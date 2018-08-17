@@ -160,33 +160,104 @@
 - andamento de projetos
 
 ## intent:o_que_eh
-- o que é um projeto?
-- o que é a cnic?
-- o que é proposta?
-- o que e proponente?
-- o que é isso?
-- oq é Lei Rouanet?
-- oq é a Lei Rouanet?
-- pode conceituar salic?
-- pode conceituar o salic?
-- pode explicar execução?
-- pode me explicar a fase de preenchimento?
-- pode me explicar a lei rouanet?
-- o que lei rouanet significa?
-- não faço ideia do que seja proponente
-- não sei bem o que você quer dizer com ministério da cultura
-- pode me dar o conceito do salic
+- o que é um projeto? 
+- o que é a cnic? 
+- o que é proposta? 
+- o que e proponente? 
+- o que é isso? 
 - o que preenchimento quer dizer?
-- me explique prestação de contas
-- me explica o que é a cnic
-- me explica o que é o salic
-- me explique melhor o conceito de projeto
-- me explique melhor o que é um proponente
-- qual o conceito de salic?
+- o que lei rouanet significa? 
+- oq é Lei Rouanet? 
+- oq é a Lei Rouanet? 
+- pode conceituar salic? 
+- pode conceituar o salic? 
+- pode explicar execução? 
+- pode me explicar a fase de preenchimento? 
+- pode me explicar a lei rouanet? 
+- pode me dar o conceito do salic 
+- não faço ideia do que seja proponente 
+- não faço ideia do que seja a lei Rouanet
+- não faço ideia do que seja não faço ideia do que seja o salic
+- não faço ideia do que seja cnic
+- não faço ideia do que seja um projeto
+- não faço ideia do que seja a fase de preenchimento 
+- não faço ideia do que seja e90
+- não faço ideia do que seja sefic
+- não faço ideia do que seja a12
+- não sei bem o que você quer dizer com ministério da cultura
+- não sei bem o que você quer dizer com lei Rouanet
+- não sei bem o que você quer dizer com um proponente
+- não sei bem o que você quer dizer com salic
+- não sei bem o que você quer dizer com cnic 
+- não sei bem o que você quer dizer com fase de preenchimento
+- não sei bem o que você quer dizer com e90 
+- não sei bem o que você quer dizer com a12 
+- não sei bem o que você quer dizer com sefic
+- Não sei o que é a lei Rouanet
+- Não sei o que é um proponente
+- Não sei o que é salic
+- Não sei o que é cnic
+- Não sei o que é um projeto
+- Não sei o que é isso
+- Não sei o que é a fase de preenchimento
+- Não sei o que é  e90
+- Não sei o que é  sefic
+- Não s ei o que é  a12 
+- me explique prestação de contas 
+- me explica o que é a cnic 
+- me explica o que é o salic 
+- me explique melhor o conceito de projeto 
+- me explique melhor o que é um proponente 
+- qual o conceito de salic? 
+- qual o conceito de proponente?
+- qual o conceito de cnic?
+- qual o conceito de sefic?
+- qual o conceito de proposta?
 - qual o significado de sefic?
-- o que significa e90?
-- o que significa o estado e90?
-- o que eh A12?
+- qual o significado de cnic?
+- qual o significado de proponente?
+- qual o significado de salic?
+- qual o significado de e90?
+- qual o significado de a12?
+- como funciona a prestação de contas
+- como funciona a fase de preenchimento
+- o que significa e90? 
+- o que significa o estado e90? 
+- o que eh A12? 
+- você pode me explicar sobre prestação de contas 
+- você pode me explicar sobre a cnic 
+- você pode me explicar sobre o salic 
+- você pode me explicar o conceito de cnic
+- você pode me explicar o conceito de salic
+- você pode me explicar o conceito de projeto 
+- você pode me explicar o conceito proponente 
+- você pode me explicar o que é a lei Rouanet
+- você pode me explicar o que é um proponente
+- você pode me explicar o que é salic
+- você pode me explicar o que é cnic
+- você pode me explicar o que é um projeto
+- você pode me explicar o que é isso
+- você pode me explicar o que é a fase de preenchimento
+- você pode me explicar o que é  e90
+- você pode me explicar o que é  sefic
+- você pode me explicar o que é  a12
+- O que significa cnic?
+- O que significa salic? 
+- O que significa sefic? 
+- O que significa e90? 
+- O que significa A12?
+- defina cnic
+- defina salic
+- defina sefic
+- defina e90
+- defina a12
+- explique cnic
+- explique salic
+- explique sefic
+- explique e90
+- explique a12
+- me explique a fase de preenchimento
+- me explique a fase de prestação de contas
 
 ## intent:duvida_sobre_contexto
 - 5

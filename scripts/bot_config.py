@@ -81,6 +81,12 @@ def get_authentication_token():
 
         return user_header
 
+def get_user_rooms():
+    get_rooms_response = requests.get(
+        host + '/api/v1/rooms.get',
+        headers = user_header
+    )
+    print ('\n' + str(get_rooms_response.json()) + '\n')
 
 def create_bot_user():
     user_info = {
@@ -169,17 +175,19 @@ if __name__ == '__main__':
     user_header = get_authentication_token()
 
     if user_header:
-        logger.info('>> Create user')
-        create_bot_user()
-
-        logger.info('>> Create livechat agent')
-        bot_agent_id = create_livechat_agent()
-
-        logger.info('>> Configure livechat')
-        configure_livechat()
-
-        logger.info('>> Create livechat department')
-        create_department(bot_agent_id)
+        logger.info('>> Get rooms')
+        get_user_rooms()
+        # logger.info('>> Create user')
+        # create_bot_user()
+        #
+        # logger.info('>> Create livechat agent')
+        # bot_agent_id = create_livechat_agent()
+        #
+        # logger.info('>> Configure livechat')
+        # configure_livechat()
+        #
+        # logger.info('>> Create livechat department')
+        # create_department(bot_agent_id)
 
     else:
         logger.error('Login Failed')

@@ -81,27 +81,6 @@ def get_authentication_token():
 
         return user_header
 
-def get_user_rooms():
-    get_rooms_response = requests.get(
-        host + '/api/v1/rooms.get',
-        headers = user_header
-    )
-    print ('\n' + str(get_rooms_response.json()) + '\n')
-
-    #The room id is still not correct
-    room_id = get_rooms_response.json()['update'][0]['lastMessage']['rid']
-    return room_id
-
-def get_channel_history():
-    get_history_response = requests.get(
-        host + '/api/v1/channels.history?roomId=' + channel_id,
-        headers = user_header
-    )
-
-    #The connection is givin an error because of the incorect room id
-    print ('Room id: ' + channel_id)
-    print ('\n' + str(get_history_response.json()) + '\n')
-
 def create_bot_user():
     user_info = {
         'name': bot_name,
@@ -189,20 +168,17 @@ if __name__ == '__main__':
     user_header = get_authentication_token()
 
     if user_header:
-        logger.info('>> Get rooms')
-        channel_id = get_user_rooms()
-        get_channel_history()
-        # logger.info('>> Create user')
-        # create_bot_user()
-        #
-        # logger.info('>> Create livechat agent')
-        # bot_agent_id = create_livechat_agent()
-        #
-        # logger.info('>> Configure livechat')
-        # configure_livechat()
-        #
-        # logger.info('>> Create livechat department')
-        # create_department(bot_agent_id)
+        logger.info('>> Create user')
+        create_bot_user()
+
+        logger.info('>> Create livechat agent')
+        bot_agent_id = create_livechat_agent()
+
+        logger.info('>> Configure livechat')
+        configure_livechat()
+
+        logger.info('>> Create livechat department')
+        create_department(bot_agent_id)
 
     else:
         logger.error('Login Failed')

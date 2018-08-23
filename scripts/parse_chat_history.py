@@ -78,21 +78,26 @@ def get_user_rooms():
     rooms_data = get_rooms_response.json()['update']
 
     for channel_data in rooms_data:
-        channels_ids.append(channel_data['_id']) 
+        channels_ids.append(channel_data['_id'])
 
     return channels_ids
 
 def get_channel_history(channel_id):
     get_history_response = requests.get(
-        host + '/api/v1/im.history?roomId=6wt5yx4rw72RP6ArzBQfg2knuGcaMFpHsd',
+        host + '/api/v1/im.history?roomId=' + channel_id,
         headers = user_header
     )
 
-    messages_data = get_history_response.json()['messages']
+    if get_history_response.json()['success']:
+        messages_data = get_history_response.json()['messages']
 
-    for message_data in messages_data:
-        user_name = messages_data['username']
-        message = messages_data['msg']
+        for message_data in messages_data:
+            time = message_data['ts']
+            username = message_data['u']['username']
+            message = message_data['msg']
+            print(time, username,':', message)
+    else:
+        print ('Cannot get the messages of this channel')
 
 if __name__ == '__main__':
     logger.info('===== Automatic env configuration =====')
@@ -102,10 +107,10 @@ if __name__ == '__main__':
     if user_header:
         logger.info('>> Get all rooms for user {}'.format(user_name))
         channels_ids = get_user_rooms()
-    
-        for channel_id in channels_ids:     
+
+        for channel_id in channels_ids:
             logger.info('>> Get messages for channel {}'.format(channel_id))
             get_channel_history(channel_id)
-    
+
     else:
         logger.error('Login Failed')

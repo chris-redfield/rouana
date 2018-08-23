@@ -87,9 +87,14 @@ def create_folder(folder_name):
     path = './' + str(folder_name)
     if not os.path.isdir(path):
         os.mkdir(path)
-        logger.info('Creating folder {}'.format(path))
+        logger.info('>> Creating folder {}'.format(path))
     else:
-        logger.info('Directory {} already exists'.format(path))
+        logger.info('>> Directory {} already exists'.format(path))
+
+def create_file(path, file_name):
+    logger.info(">> Creating file {}".format(path + file_name))
+    file = open(path + file_name, 'w+')
+    return file
 
 def get_channel_history(channel_id):
     get_history_response = requests.get(
@@ -101,14 +106,19 @@ def get_channel_history(channel_id):
         path = 'messages/' + str(channel_id) + '/'
         create_folder(path)
         file_name = messages_data[0]['ts'][:10] + '.txt'
-        f = open(path + file_name, 'w+')
+        f = create_file(path, file_name)
+
         for message_data in reversed(messages_data):
             time = message_data['ts']
             username = message_data['u']['username']
             message = message_data['msg']
             line = time + ' ' + username +': '+ message + '\n'
+
+            if time[:10] != file_name[:10]:
+                f.close()
+                f = create_file(path, time[:10] + '.txt')
+
             f.write(line)
-            print(line)
 
         f.close()
     else:

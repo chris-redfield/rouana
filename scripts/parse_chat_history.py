@@ -4,6 +4,7 @@ import argparse
 import json
 import logging
 import requests
+import os
 
 # == Log Config ==
 
@@ -82,22 +83,36 @@ def get_user_rooms():
 
     return channels_ids
 
+def create_folder(folder_name):
+    path = './' + str(folder_name)
+    if not os.path.isdir(path):
+        os.mkdir(path)
+        logger.info('Creating folder {}'.format(path))
+    else:
+        logger.info('Directory {} already exists'.format(path))
+
 def get_channel_history(channel_id):
     get_history_response = requests.get(
         host + '/api/v1/im.history?roomId=' + channel_id,
         headers = user_header
     )
-
     if get_history_response.json()['success']:
         messages_data = get_history_response.json()['messages']
-
-        for message_data in messages_data:
+        path = 'messages/' + str(channel_id) + '/'
+        create_folder(path)
+        file_name = messages_data[0]['ts'][:10] + '.txt'
+        f = open(path + file_name, 'w+')
+        for message_data in reversed(messages_data):
             time = message_data['ts']
             username = message_data['u']['username']
             message = message_data['msg']
-            print(time, username,':', message)
+            line = time + ' ' + username +': '+ message + '\n'
+            f.write(line)
+            print(line)
+
+        f.close()
     else:
-        print ('Cannot get the messages of this channel')
+        logger.error('>> Cannot get the messages of this channel')
 
 if __name__ == '__main__':
     logger.info('===== Automatic env configuration =====')
@@ -105,6 +120,7 @@ if __name__ == '__main__':
     user_header = get_authentication_token()
 
     if user_header:
+        create_folder('messages')
         logger.info('>> Get all rooms for user {}'.format(user_name))
         channels_ids = get_user_rooms()
 

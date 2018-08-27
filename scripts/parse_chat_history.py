@@ -40,9 +40,17 @@ parser.add_argument(
     '--rocketchat-url', '-r', type=str, default='http://localhost:3000',
     help='Rocket chat URL (default: http://localhost:3000)'
 )
+parser.add_argument(
+    '--ssl', '-s', type=bool, default=False,
+    help='Web Socker SSL config (default: False)'
+)
+parser.add_argument(
+    '--export', '-e', type=bool, default=False,
+    help='Export conversations as files at \
+          directory "messages" (default: False)'
+)
 
 args = parser.parse_args()
-
 
 host = args.rocketchat_url
 if host[-1] == '/':
@@ -54,6 +62,8 @@ user_name = args.user_name
 user_password = args.user_password
 user_header = None
 channels_ids = []
+ssl_config = args.ssl
+export_conversations = args.export
 
 def get_authentication_token():
     login_data = {'username': user_name, 'password': user_password}
@@ -100,7 +110,12 @@ def create_file(path, file_name):
     return file
 
 def create_bot():
-    bot = RocketChatBot(user_name,user_password,server='localhost:3000',ssl=False)
+    if host.count('https://'):
+        ws_host = host.replace('https://','')
+    if host.count('http://'):
+        ws_host = host.replace('http://','')
+
+    bot = RocketChatBot(user_name,user_password,server=ws_host,ssl=ssl_config)
     return bot
 
 def create_direct_message_channel():
@@ -112,31 +127,48 @@ def send_direct_message(room_id):
     message_data = {'message': {'rid': room_id, 'msg': 'get messages'}}
     response = requests.post(host + '/api/v1/chat.sendMessage' ,headers=user_header, data=json.dumps(message_data))
 
+def get_user_name(conversations_messages):
+    username = ""
+    for message_data in reversed(conversations_messages):
+        username = get_user_from_message(message_data)
+
+        if username != 'rouana' and username != 'tais':
+            break
+
+    return username
+
+def get_user_from_message(message_data):
+    username = ""
+    if 'name' in message_data['u'] and message_data['u']['name'] != None:
+        username = message_data['u']['name']
+    else:
+        username = message_data['u']['username']
+
+    return username
+
 def process_channel_messages(conversation_id, conversation_messages):
-    path = 'messages/' + str(conversation_id) + '/'
+    folder_name = get_user_name(conversation_messages)
+
+    path = 'messages/' + folder_name + '/'
     create_folder(path)
+
+    conversation_path = path + str(conversation_id) + '/'
+    create_folder(conversation_path)
+
     file_name = str(conversation_messages[-1]['ts'])[:10] + '.txt'
-    f = create_file(path, file_name)
+    f = create_file(conversation_path, file_name)
 
     for message_data in reversed(conversation_messages):
-        time = str(message_data['ts'])
-        username = ""
-
-        if 'name' in message_data['u'] and message_data['u']['name'] != None:
-            username = message_data['u']['name']
-        else:
-            username = message_data['u']['username']
-
-        if username == None:
-            print("Message data foi \n", message_data, "\n\n")
+        time = str(message_data['ts'])[:19]
 
         message = message_data['msg']
+        username = get_user_from_message(message_data)
 
         line = time + ' ' + username +': '+ message + '\n'
 
         if time[:10] != file_name[:10]:
             f.close()
-            f = create_file(path, time[:10] + '.txt')
+            f = create_file(conversation_path, time[:10] + '.txt')
 
         f.write(line)
 
@@ -168,7 +200,10 @@ if __name__ == '__main__':
             if len(bot.conversations_messages) == len(channels_ids):
                 break
 
-        for conversation_id, conversation_messages in bot.conversations_messages.items():
-            process_channel_messages(conversation_id, conversation_messages)
+        if export_conversations:
+            for conversation_id, conversation_messages in bot.conversations_messages.items():
+                process_channel_messages(conversation_id, conversation_messages)
+        else:
+            print("Not exporting!!")
     else:
         logger.error('Login Failed')

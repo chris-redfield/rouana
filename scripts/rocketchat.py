@@ -345,7 +345,7 @@ class RocketChatBot():
         self.username = user
         self.password = password
         self.server = server
-        self.debug = True
+        self.debug = False
         self.conversations_messages = {}
 
         self._prefixs = []

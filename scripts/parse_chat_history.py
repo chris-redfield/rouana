@@ -96,7 +96,7 @@ def create_folder(folder_name):
 
 def create_file(path, file_name):
     logger.info(">> Creating file {}".format(path + file_name))
-    file = open(path + file_name, 'w+')
+    file = open(path + file_name, 'a')
     return file
 
 def create_bot():
@@ -104,17 +104,9 @@ def create_bot():
     return bot
 
 def process_channel_messages(conversation_id, conversation_messages):
-    #for el in conversation_messages:
-        #print("foi \n\n", str(el['ts'])[:10],"\n\n")
-        #if 'name' in el['u']:
-        #    user_name = el['u']['name']
-        #else:
-        #    user_name = el['u']['username']
-    #    print(str(el['ts'])[:10])
-
     path = 'messages/' + str(conversation_id) + '/'
     create_folder(path)
-    file_name = str(conversation_messages[0]['ts'])[:10] + '.txt'
+    file_name = str(conversation_messages[-1]['ts'])[:10] + '.txt'
     f = create_file(path, file_name)
 
     for message_data in reversed(conversation_messages):
@@ -134,10 +126,8 @@ def process_channel_messages(conversation_id, conversation_messages):
         line = time + ' ' + username +': '+ message + '\n'
 
         if time[:10] != file_name[:10]:
-            print("Entrou aki e time foi ",time[:10]," e file_name foi ",file_name[:10])
             f.close()
             f = create_file(path, time[:10] + '.txt')
-            print("ENTROUUUU AKIII e line foi", line,"\n\n\n")
 
         f.write(line)
 

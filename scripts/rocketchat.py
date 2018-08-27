@@ -457,8 +457,7 @@ class RocketChatBot():
         self.client.connect()
         self.client.login(self.username, self.password.encode('utf-8'), callback=self.cb)
         
-        #while True:
-        #    time.sleep(3600)
+        time.sleep(5)
 
     def addPrefixHandler(self, prefix, handler):
         self._prefixs.append({'prefix': prefix, 'handler': handler})

@@ -103,6 +103,15 @@ def create_bot():
     bot = RocketChatBot(user_name,user_password,server='localhost:3000',ssl=False)
     return bot
 
+def create_direct_message_channel():
+    user_data = {'username': 'rouana'}
+    response = requests.post(host + '/api/v1/im.create' ,headers=user_header, data=json.dumps(user_data))
+    return response.json()['room']['_id']
+
+def send_direct_message(room_id):
+    message_data = {'message': {'rid': room_id, 'msg': 'get messages'}}
+    response = requests.post(host + '/api/v1/chat.sendMessage' ,headers=user_header, data=json.dumps(message_data))
+
 def process_channel_messages(conversation_id, conversation_messages):
     path = 'messages/' + str(conversation_id) + '/'
     create_folder(path)
@@ -142,6 +151,8 @@ if __name__ == '__main__':
     logger.info('===== Automatic env configuration =====')
 
     user_header = get_authentication_token()
+    room_id = create_direct_message_channel()
+    #send_direct_message(room_id)
     bot = create_bot()
     bot.addPrefixHandler('get messages', get_channels_history)
 
@@ -151,6 +162,7 @@ if __name__ == '__main__':
         channels_ids = get_user_rooms()
 
         bot.start()        
+        send_direct_message(room_id)
 
         while True:
             if len(bot.conversations_messages) == len(channels_ids):

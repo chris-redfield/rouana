@@ -22,7 +22,7 @@ def train_dialogue(domain_file='domain.yml',
 
     agent = Agent(
         domain_file,
-        policies=[KerasPolicy(),MemoizationPolicy(max_history=3)]
+        policies=[KerasPolicy(),MemoizationPolicy(max_history=3), FallbackPolicy()]
     )
 
     training_data = agent.load_data(training_data_file)

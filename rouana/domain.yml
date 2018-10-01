@@ -41,6 +41,7 @@ intents:
   - processo_situacao_processo
 
   - salic
+  - salic_oque_eh
   - salic_cadastro_usuario
   - salic_cadastro_proponente
   - salic_recuperacao_de_senha
@@ -1216,6 +1217,10 @@ templates:
     - text: |
         Posso tirar dúvidas sobre o SALIC, por exemplo, como se cadastrar, como recuperar senha, e sobre alguns erros do sistema.
 
+  utter_salic_oque_eh:
+    - text: |
+       O salic eh um sistema legal! que você usa para ver os projetos.
+
   utter_salic_preenchimento_cadastro_rubrica_advogado_contador:
     - text: |
         Você deve ir em:
@@ -1347,3 +1352,4 @@ actions:
   - utter_salic_erros_achar_proposta
   - utter_salic_cadastro_proponente
   - utter_salic_cadastro_usuario
+  - utter_salic_oque_eh

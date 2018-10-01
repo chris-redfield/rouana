@@ -46,6 +46,8 @@
 - qual o conceito de proponente
 - quem pode ser um proponente
 - qual a definicao de proponente
+- defina proponente
+- conceitue proponente
 
 ## intent:definicao_salic
 - o que é SALIC

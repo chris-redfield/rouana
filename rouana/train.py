@@ -17,12 +17,12 @@ def train_dialogue(domain_file='domain.yml',
                    model_path='models/dialogue',
                    training_data_file='data/stories'):
     fallback = FallbackPolicy(fallback_action_name="utter_default",
-                              core_threshold=0.65,
-                              nlu_threshold=0.65)
+                              core_threshold=0.80,
+                              nlu_threshold=0.80)
 
     agent = Agent(
         domain_file,
-        policies=[KerasPolicy(),MemoizationPolicy(max_history=3)]
+        policies=[MemoizationPolicy(max_history=3), KerasPolicy(), fallback]
     )
 
     training_data = agent.load_data(training_data_file,augmentation_factor=0)

@@ -1,9 +1,6 @@
-## path_lei_rouanet.1
+## path_1
 * cumprimentar
   - utter_cumprimentar
-  - utter_menu
-* lei_rouanet
-  - utter_lei_rouanet
 * lei_rouanet_o_que_eh
   - utter_lei_rouanet_o_que_eh
   - utter_lei_rouanet_mais
@@ -11,36 +8,22 @@
 * despedir
   - utter_despedir
 
-## path_lei_rouanet.2
+## path_2
 * cumprimentar
   - utter_cumprimentar
-  - utter_menu
-* lei_rouanet
-  - utter_lei_rouanet
-* lei_rouanet_o_que_eh
-  - utter_lei_rouanet_o_que_eh
-  - utter_lei_rouanet_mais
+* definicao_proponente
+  - utter_definicao_proponente
 
-## path_salic.1
+## path_3
 * cumprimentar
   - utter_cumprimentar
-  - utter_menu
-* salic
-  - utter_salic
-* definicao_salic
-  - utter_definicao_salic
+* definicao_proposta
+  - utter_definicao_proposta
 
-## path_salic.2
-* cumprimentar
-  - utter_cumprimentar
-* salic
-  - utter_salic
-* salic_cadastro_usuario
-  - utter_salic_cadastro_usuario
-  - utter_menu
-
-
-## fallback story
-* out_of_scope
-  - utter_default
-  - utter_menu
+## path_3
+* definicao_proposta
+  - utter_definicao_proposta
+* definicao_proponente
+  - utter_definicao_proponente
+* definicao_minc
+  - utter_definicao_minc

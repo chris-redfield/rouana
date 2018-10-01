@@ -36,8 +36,8 @@ Action: Send Message
 ### Conversa no console
 
 ```sh
-sudo docker build -t rouana -f docker/Dockerfile .
-sudo docker run --rm --name rouana -it -v $PWD/rouana:/rouana rouana python train.py
+sudo docker build -t rouana -f docker/tais/Dockerfile .
+sudo docker run --rm --name rouana -it -v $PWD/rouana:/rouana rouana python train.py all
 ```
 
 ### Teste de confiabilidade de frases

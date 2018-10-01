@@ -10,7 +10,6 @@
 - voce torce pra qual time
 - como esta o tempo
 
-<!-- Saudação -->
 ## intent:cumprimentar
 - oi
 - olá
@@ -24,21 +23,17 @@
 - oi, tudo bem?
 - oi, como vai você?
 - como vão as coisas?
-- alô
-- eae
-- eai
-- yo
 - opa tudo bem
 - pode me tirar uma dúvida?
 
-<!-- Despedir -->
-
-##intent:despedir
+## intent:despedir
 - Tchau obrigada
 - até logo
-- namaste
-- sayonara
 - até mais
 - até breve
 - falou, valeu
 - flw vlw
+- adeus
+- adeus, Tais
+- até a próxima
+- depois conversamos

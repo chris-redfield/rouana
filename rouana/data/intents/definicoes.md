@@ -39,10 +39,13 @@
 - como caracteriza uma proposta
 
 ## intent:definicao_proponente
-- o que é Proponente
-- o que significa Proponente
+- o que é proponente
+- o que significa proponente
 - o que um proponente faz
 - quem é proponente
+- qual o conceito de proponente
+- quem pode ser um proponente
+- qual a definicao de proponente
 
 ## intent:definicao_salic
 - o que é SALIC
